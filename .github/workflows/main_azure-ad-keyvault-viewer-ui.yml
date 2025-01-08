@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://azureadkeyvaultviewerui.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_5aa8339e55e04591af93d387dd99fb65 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_848adb03814c47959cd5839cfc4d4b5b }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_59ec045ab539404d8a3c70c21ce352ee }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_78de70ce73de46309be93b05ff58fc9d }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: azureadkeyvaultviewerui.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5aa8339e55e04591af93d387dd99fb65 }}/az204projectcontainazureadkeyvaultviewerui/azure-ad-keyvault-viewer:${{ github.sha }}
+        tags: azureadkeyvaultviewerui.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_59ec045ab539404d8a3c70c21ce352ee }}/az204projectcontainerregistry.azurecr.io/azureadkeyvaultviewerui/azure-ad-keyvault-viewer:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'azure-ad-keyvault-viewer-ui'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5252a3e71eea41b18f3abb0caf34fff7 }}
-        images: 'azureadkeyvaultviewerui.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5aa8339e55e04591af93d387dd99fb65 }}/az204projectcontainazureadkeyvaultviewerui/azure-ad-keyvault-viewer:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_379fab6537c24df0ae00feed3219cc94 }}
+        images: 'azureadkeyvaultviewerui.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_59ec045ab539404d8a3c70c21ce352ee }}/az204projectcontainerregistry.azurecr.io/azureadkeyvaultviewerui/azure-ad-keyvault-viewer:${{ github.sha }}'
